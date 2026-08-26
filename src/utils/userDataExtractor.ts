@@ -104,23 +104,26 @@ const extractFromHtml = (html: string): UserData | null => {
 export const extractUserData = async (): Promise<UserData | null> => {
     const TARGET_ORIGIN = 'https://klc2.kemenkeu.go.id'
 
+    // Data dummy untuk pengembangan atau saat tidak berada di klc2
+    const dummyData: UserData = {
+        name: 'Muhammad Al Hafidhi',
+        email: 'al.hafidhi@kemenkeu.go.id',
+        photoUrl:
+            'https://aset-satu.kemenkeu.go.id/api/photo/GetPhotoUrl/KYu1d5HMZVLRY89Tg7ADu45yPMK2k_HZRcZWbXY2Tr0',
+    }
+
     // Jika berjalan di localhost, kembalikan data dummy
     if (
         window.location.hostname === 'localhost' ||
         window.location.hostname === '127.0.0.1'
     ) {
-        return {
-            name: 'Muhammad Al Hafidhi',
-            email: 'al.hafidhi@kemenkeu.go.id',
-            photoUrl:
-                'https://aset-satu.kemenkeu.go.id/api/photo/GetPhotoUrl/KYu1d5HMZVLRY89Tg7ADu45yPMK2k_HZRcZWbXY2Tr0',
-        }
+        return dummyData
     }
 
-    // Pastikan aplikasi berjalan di domain target (setelah diunggah)
+    // Jika tidak di domain target, gunakan data dummy juga
     if (window.location.origin !== TARGET_ORIGIN) {
-        console.warn('Not running on klc2.kemenkeu.go.id, cannot extract data')
-        return null
+        console.warn('Not running on klc2.kemenkeu.go.id, using dummy data')
+        return dummyData
     }
 
     try {
