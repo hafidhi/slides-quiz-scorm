@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/correct-siSLAmAN.wav`;export{e as default};

@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/favicon-HV1kWBx1.svg`;export{e as default};

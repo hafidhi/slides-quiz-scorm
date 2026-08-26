@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/lose-DwtwQUd5.wav`;export{e as default};

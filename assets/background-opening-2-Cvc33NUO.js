@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/background-opening-2-B37rXIv_.png`;export{e as default};

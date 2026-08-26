@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/win-CADMXKsU.wav`;export{e as default};

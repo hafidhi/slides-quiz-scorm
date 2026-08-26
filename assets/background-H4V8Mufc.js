@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/background-BiAWSj0I.wav`;export{e as default};

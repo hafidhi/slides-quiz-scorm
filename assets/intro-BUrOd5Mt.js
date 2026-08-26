@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/intro-D6bHeKYh.mp4`;export{e as default};

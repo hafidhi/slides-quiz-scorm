@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/wrong-CgN9AdDj.wav`;export{e as default};

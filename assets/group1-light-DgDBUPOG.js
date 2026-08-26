@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/group1-light-BYfYbvZz.png`;export{e as default};

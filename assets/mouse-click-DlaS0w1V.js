@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/mouse-click-DBCqkH3_.wav`;export{e as default};

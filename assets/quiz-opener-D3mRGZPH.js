@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/quiz-opener-Dmga23d1.mp3`;export{e as default};

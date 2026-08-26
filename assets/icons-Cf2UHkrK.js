@@ -1,0 +1,1 @@
+var e=`/slides-quiz-scorm/assets/icons-L3ttVLT4.svg`;export{e as default};
