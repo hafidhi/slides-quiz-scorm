@@ -22,7 +22,8 @@ type Screen =
     | 'quiz'
     | 'end'
 
-const STORAGE_KEY = `app_state_${window.location.pathname}`
+// Gunakan __BUILD_ID__ yang akan di-define saat build
+const STORAGE_KEY = `app_state_${__BUILD_ID__}`
 
 interface SavedState {
     screen: Screen
