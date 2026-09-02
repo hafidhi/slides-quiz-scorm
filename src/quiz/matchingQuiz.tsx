@@ -1,7 +1,7 @@
 // src/quiz/matchingQuiz.tsx
 import React, { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaChevronLeft, FaChevronRight, FaCheckCircle } from 'react-icons/fa'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import type { QuizQuestion } from './quizType'
 
 interface MatchingQuizProps {
@@ -70,10 +70,23 @@ const MatchingQuiz: React.FC<MatchingQuizProps> = ({
         setActiveIndex((prev) => (prev < numStatements - 1 ? prev + 1 : 0))
     }
 
-    const isStatementCorrect = (idx: number) => {
-        if (!submitted || !userAnswer) return null
-        return userAnswer[idx] === correctAnswers[idx]
-    }
+    // Opsi yang akan ditampilkan: semua jika belum submit, hanya yang dipilih user jika sudah submit
+    const displayOptions = useMemo(() => {
+        if (!submitted || !userAnswer) {
+            return question.options.map((opt, idx) => ({
+                originalIndex: idx,
+                text: opt,
+            }))
+        }
+        const answerIdx = userAnswer[activeIndex]
+        if (answerIdx === -1) return []
+        return [
+            {
+                originalIndex: answerIdx,
+                text: question.options[answerIdx],
+            },
+        ]
+    }, [submitted, userAnswer, activeIndex, question.options])
 
     return (
         <motion.div
@@ -128,23 +141,7 @@ const MatchingQuiz: React.FC<MatchingQuizProps> = ({
 
                 {currentAnswerIndex !== -1 && (
                     <div className="mt-[clamp(0.75rem,min(1.5vw,1.5vh),1.25rem)] text-[clamp(0.8rem,min(1.5vw,1.5vh),1.25rem)] text-blue-600 dark:text-blue-400 flex items-center gap-1">
-                        <FaCheckCircle />
                         <span>{question.options[currentAnswerIndex]}</span>
-                    </div>
-                )}
-
-                {submitted && isStatementCorrect(activeIndex) !== null && (
-                    <div className="mt-[clamp(0.75rem,min(1.5vw,1.5vh),1.25rem)] px-[clamp(0.75rem,min(1.5vw,1.5vh),1.25rem)] py-[clamp(0.4rem,min(0.8vw,0.8vh),0.8rem)] rounded-[clamp(0.5rem,min(1vw,1vh),1rem)] text-[clamp(0.8rem,min(1.5vw,1.5vh),1.25rem)] font-bold bg-white/80 dark:bg-gray-900/80 shadow">
-                        {isStatementCorrect(activeIndex) ? (
-                            <span className="text-green-600 dark:text-green-400">
-                                ✔ Benar
-                            </span>
-                        ) : (
-                            <span className="text-red-600 dark:text-red-400">
-                                ✘ Jawaban benar:{' '}
-                                {question.options[correctAnswers[activeIndex]]}
-                            </span>
-                        )}
                     </div>
                 )}
             </div>
@@ -156,7 +153,8 @@ const MatchingQuiz: React.FC<MatchingQuizProps> = ({
             )}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(0.5rem,min(1vw,1vh),1rem)]">
-                {question.options.map((opt, idx) => {
+                {displayOptions.map((option) => {
+                    const idx = option.originalIndex
                     const isSelected = currentAnswerIndex === idx
                     const isUsedByOther =
                         usedOptionsMap.has(idx) &&
@@ -169,18 +167,11 @@ const MatchingQuiz: React.FC<MatchingQuizProps> = ({
                         'p-[clamp(0.5rem,min(1.25vw,1.25vh),1rem)] rounded-[clamp(0.5rem,min(1vw,1vh),1rem)] font-medium text-center border-[clamp(1px,min(0.3vw,0.3vh),2px)] transition w-full relative min-h-[clamp(4rem,min(12vw,12vh),8rem)] flex flex-col items-center justify-center '
 
                     if (submitted) {
-                        const correctForActive =
-                            correctAnswers[activeIndex] === idx
-                        if (correctForActive) {
-                            btnStyle +=
-                                'bg-green-500 text-white border-green-500 cursor-not-allowed'
-                        } else if (isSelected && !correctForActive) {
-                            btnStyle +=
-                                'bg-red-500 text-white border-red-500 cursor-not-allowed'
-                        } else {
-                            btnStyle +=
-                                'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-600 cursor-not-allowed'
-                        }
+                        // Karena hanya opsi yang dipilih yang tampil, maka idx pasti jawaban user
+                        const isCorrect = idx === correctAnswers[activeIndex]
+                        btnStyle += isCorrect
+                            ? 'bg-green-600 text-white border-green-300 cursor-not-allowed'
+                            : 'bg-red-600 text-white border-red-300 cursor-not-allowed'
                     } else {
                         if (isSelected) {
                             btnStyle +=
@@ -219,7 +210,7 @@ const MatchingQuiz: React.FC<MatchingQuizProps> = ({
                             transition={{ delay: 0.1 * idx }}
                         >
                             <span className="text-[clamp(0.9rem,min(1.5vw,1.5vh),1.25rem)]">
-                                {opt}
+                                {option.text}
                             </span>
 
                             {isUsedByOther &&

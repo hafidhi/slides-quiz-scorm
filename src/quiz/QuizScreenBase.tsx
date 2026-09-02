@@ -122,7 +122,7 @@ const QuizScreenBase: React.FC<QuizScreenBaseProps> = ({
     const narasiAudioRef = useRef<HTMLAudioElement | null>(null)
     useEffect(() => {
         const audio = new Audio(
-            `./quiz-data/group-${groupIndex + 1}/opener.mp3`,
+            `./slides-data/group-${groupIndex + 1}/quiz/opener.mp3`,
         )
         audio.volume = volumeNarasi
         narasiAudioRef.current = audio
@@ -325,19 +325,11 @@ const QuizScreenBase: React.FC<QuizScreenBaseProps> = ({
     const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) =>
         setVolumeNarasi(parseFloat(e.target.value))
 
+    // ===== PERUBAHAN: background image adaptif =====
     const backgroundImage = useMemo(() => {
-        if (groupIndex === 0) {
-            return isDark
-                ? './images/background-slide/group1-dark.png'
-                : './images/background-slide/group1-light.png'
-        } else if (groupIndex === 1) {
-            return isDark
-                ? './images/background-slide/group2-dark.png'
-                : './images/background-slide/group2-light.png'
-        }
-        return isDark
-            ? './images/background-slide-1.png'
-            : './images/background-slide-2.png'
+        return `./slides-data/group-${groupIndex + 1}/background-${
+            isDark ? 'dark' : 'light'
+        }.png`
     }, [groupIndex, isDark])
 
     const question = questions[currentIndex]
@@ -353,7 +345,6 @@ const QuizScreenBase: React.FC<QuizScreenBaseProps> = ({
                 backgroundPosition: 'center',
             }}
         >
-            <div className="absolute inset-0 bg-black/30 dark:bg-white/10" />
             <div className="relative z-10 h-full flex flex-col">
                 <SlideContainerHeader
                     searchTerm=""
@@ -457,7 +448,7 @@ const QuizScreenBase: React.FC<QuizScreenBaseProps> = ({
                                     </button>
                                 )}
                                 {allSubmitted && (
-                                    <div className="bg-black/60 dark:bg-white/40 backdrop-blur-md rounded-xl p-5 w-full text-center shadow-lg">
+                                    <div className="bg-black dark:bg-white backdrop-blur-md rounded-xl p-5 w-full text-center shadow-lg">
                                         <p className="text-white dark:text-gray-900 font-bold text-lg">
                                             Skor: {correctCount}/{totalQuiz} (
                                             {Math.round(scorePercent)}%)
@@ -603,7 +594,7 @@ const QuizScreenBase: React.FC<QuizScreenBaseProps> = ({
                                     </button>
                                 )}
                                 {allSubmitted && (
-                                    <div className="text-center space-y-4 bg-black/60 dark:bg-white/40 backdrop-blur-md rounded-xl p-5 w-full max-w-[200px] shadow-lg">
+                                    <div className="text-center space-y-4 bg-black dark:bg-white backdrop-blur-md rounded-xl p-5 w-full max-w-[200px] shadow-lg">
                                         <p className="text-white dark:text-gray-900 font-bold text-lg">
                                             Skor: {correctCount}/{totalQuiz} (
                                             {Math.round(scorePercent)}%)

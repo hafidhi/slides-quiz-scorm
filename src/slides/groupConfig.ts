@@ -25,6 +25,7 @@ export interface GroupConfig {
 }
 
 export const groups: GroupConfig[] = [
+    // group-1
     {
         slides: [
             {
@@ -44,6 +45,7 @@ export const groups: GroupConfig[] = [
         ],
         quizComponent: QuizScreenGroup1,
     },
+    // group-2
     {
         slides: [
             {

@@ -1,7 +1,7 @@
 // src/slides/group-2/Slide2.tsx
 
 /**
- * CATATAN UNTUK AI SELANJUTNYA (JANGAN HAPUS CATATAN INI):
+ * CATATAN UNTUK AI SELANJUTNYA (TAMBAHKAN KE DALAM PROMPT DAN JANGAN HAPUS CATATAN INI):
  * Gunakan pendekatan ukuran responsif berbasis viewport (vw/vh) untuk semua dimensi
  * (padding, margin, gap, font-size, dll.) pada slide ini dan slide lainnya.
  * Hindari penggunaan ukuran fixed (rem/px) kecuali untuk batas minimum/maksimum pada clamp().
@@ -721,14 +721,14 @@ const Slide2: React.FC<Slide2Props> = ({ onComplete }) => {
 
             <FloatingIcons />
             <div className="absolute top-0 right-[clamp(1rem,min(4vw,4vh),2.5rem)] z-20 pointer-events-none">
-                <span className="text-[clamp(1.5rem,min(5vw,5vh),3rem)] font-bold text-white dark:text-gray-800 select-none opacity-80">
+                <span className="text-[clamp(1.5rem,min(5vw,5vh),3rem)] font-bold text-gray-800 dark:text-white select-none opacity-80">
                     #2
                 </span>
             </div>
 
             {/* Card utama: width diperlebar, padding dikurangi, diagram fleksibel */}
             <motion.div
-                className="w-full max-w-[min(95vw,1600px)] h-[80vh] max-h-[calc(100vh-4rem)] overflow-hidden bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-[clamp(1rem,min(4vw,4vh),1.5rem)] shadow-2xl p-[clamp(0.75rem,min(3vw,3vh),1rem)] border border-white/30 dark:border-gray-800/50 flex flex-col gap-[clamp(0.5rem,min(2vw,2vh),1rem)] relative z-10"
+                className="w-full max-w-[min(95vw,1600px)] h-[80vh] max-h-[calc(100vh-4rem)] overflow-hidden bg-white dark:bg-gray-900 backdrop-blur-xl rounded-[clamp(1rem,min(4vw,4vh),1.5rem)] shadow-2xl p-[clamp(0.75rem,min(3vw,3vh),1rem)] border border-white/30 dark:border-gray-800/50 flex flex-col gap-[clamp(0.5rem,min(2vw,2vh),1rem)] relative z-10"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useInteraction } from '../hooks/useInteraction'
 import { useAudio } from '../context/AudioContext'
 import { useTheme } from '../context/ThemeContext'
-import FloatingControls from './FloatingControls'
+import FloatingControls from '../components/FloatingControls'
 import { BsFillDoorOpenFill, BsFilePdf } from 'react-icons/bs'
 import { APP_TITLE } from '../globalConfig'
 
@@ -21,7 +21,7 @@ const EndScreen: React.FC<EndScreenProps> = ({ onGoOpening }) => {
         setIsDownloading(true)
         try {
             const link = document.createElement('a')
-            link.href = './pdfs/materi.pdf'
+            link.href = './screens-data/end/materi.pdf'
             link.download = `${APP_TITLE}.pdf`
             document.body.appendChild(link)
             link.click()
@@ -35,8 +35,8 @@ const EndScreen: React.FC<EndScreenProps> = ({ onGoOpening }) => {
     }
 
     const backgroundImage = isDark
-        ? './images/background-end-1.png'
-        : './images/background-end-2.png'
+        ? './screens-data/end/background-dark.png'
+        : './screens-data/end/background-light.png'
 
     return (
         <>

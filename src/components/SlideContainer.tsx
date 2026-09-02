@@ -219,19 +219,11 @@ const SlideContainer: React.FC<SlideContainerProps> = ({
         onNavigateToSlide(0)
     }, [onNavigateToSlide])
 
+    // ===== PERUBAHAN: background image adaptif =====
     const backgroundImage = useMemo(() => {
-        if (groupIndex === 0) {
-            return isDark
-                ? './images/background-slide/group1-dark.png'
-                : './images/background-slide/group1-light.png'
-        } else if (groupIndex === 1) {
-            return isDark
-                ? './images/background-slide/group2-dark.png'
-                : './images/background-slide/group2-light.png'
-        }
-        return isDark
-            ? './images/background-slide-1.png'
-            : './images/background-slide-2.png'
+        return `./slides-data/group-${groupIndex + 1}/background-${
+            isDark ? 'dark' : 'light'
+        }.png`
     }, [groupIndex, isDark])
 
     return (
@@ -243,7 +235,6 @@ const SlideContainer: React.FC<SlideContainerProps> = ({
                 backgroundPosition: 'center',
             }}
         >
-            <div className="absolute inset-0 bg-black/30 dark:bg-white/10" />
             <div className="relative z-10 h-full flex flex-col">
                 <SlideContainerHeader
                     searchTerm={searchTerm}

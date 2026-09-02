@@ -2,6 +2,7 @@
 import React, { useState, useMemo, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import type { QuizQuestion } from './quizType'
+import { FaCheck, FaTimes } from 'react-icons/fa'
 
 interface OrderingQuizProps {
     question: QuizQuestion
@@ -215,7 +216,7 @@ const OrderingQuiz: React.FC<OrderingQuizProps> = ({
                                             : 'text-red-600 dark:text-red-400'
                                     }`}
                                 >
-                                    {correctStatus ? '✔' : '✘'}
+                                    {correctStatus ? <FaCheck /> : <FaTimes />}
                                 </span>
                             )}
                         </div>

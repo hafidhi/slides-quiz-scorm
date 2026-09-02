@@ -1,7 +1,7 @@
 // src/slides/group-2/Slide1.tsx
 
 /**
- * CATATAN UNTUK AI SELANJUTNYA (JANGAN HAPUS CATATAN INI):
+ * CATATAN UNTUK AI SELANJUTNYA (TAMBAHKAN KE DALAM PROMPT DAN JANGAN HAPUS CATATAN INI):
  * Gunakan pendekatan ukuran responsif berbasis viewport (vw/vh) untuk semua dimensi
  * (padding, margin, gap, font-size, dll.) pada slide ini dan slide lainnya.
  * Hindari penggunaan ukuran fixed (rem/px) kecuali untuk batas minimum/maksimum pada clamp().
@@ -738,9 +738,9 @@ const Slide1: React.FC<Slide1Props> = ({}) => {
                 </span>
             </div>
 
-            {/* Card utama - width diperlebar dan padding/gap dikurangi agar lebih ramping */}
+            {/* Card utama - background diubah menjadi solid (tidak semi-transparan) */}
             <motion.div
-                className="w-full max-w-[min(95vw,1600px)] max-h-[calc(100vh-4rem)] overflow-y-auto bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-[clamp(1rem,min(4vw,4vh),1.5rem)] shadow-2xl p-[clamp(0.75rem,min(3vw,3vh),1rem)] border border-white/30 dark:border-gray-800/50 flex flex-col gap-[clamp(0.5rem,min(2vw,2vh),1rem)] relative z-10"
+                className="w-full max-w-[min(95vw,1600px)] max-h-[calc(100vh-4rem)] overflow-y-auto bg-white dark:bg-gray-900 rounded-[clamp(1rem,min(4vw,4vh),1.5rem)] shadow-2xl p-[clamp(0.75rem,min(3vw,3vh),1rem)] border border-gray-200 dark:border-gray-700 flex flex-col gap-[clamp(0.5rem,min(2vw,2vh),1rem)] relative z-10"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
@@ -768,9 +768,9 @@ const Slide1: React.FC<Slide1Props> = ({}) => {
                     </p>
                 </motion.div>
 
-                {/* INFO BANNER BPPK / PUSBIN JFPM - dikurangi padding */}
+                {/* INFO BANNER BPPK / PUSBIN JFPM - background diubah menjadi solid di dark mode */}
                 <motion.div
-                    className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 border border-blue-200 dark:border-blue-700 rounded-[clamp(0.75rem,min(3vw,3vh),1rem)] p-[clamp(0.5rem,min(2vw,2vh),0.75rem)] text-center"
+                    className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 border border-blue-200 dark:border-blue-700 rounded-[clamp(0.75rem,min(3vw,3vh),1rem)] p-[clamp(0.5rem,min(2vw,2vh),0.75rem)] text-center"
                     variants={headerVariants}
                     initial="hidden"
                     animate="visible"

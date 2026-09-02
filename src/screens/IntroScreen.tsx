@@ -105,7 +105,7 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
             <video
                 ref={videoRef}
                 className="absolute inset-0 w-full h-full object-cover"
-                src="./videos/intro.mp4"
+                src="./screens-data/intro/video.mp4"
                 autoPlay
                 muted
                 playsInline

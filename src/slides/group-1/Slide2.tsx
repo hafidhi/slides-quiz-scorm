@@ -13,7 +13,7 @@ import { useInteraction } from '../../hooks/useInteraction'
 import FloatingIcons from '../../components/FloatingIcons'
 
 /**
- * CATATAN UNTUK AI SELANJUTNYA (JANGAN HAPUS CATATAN INI):
+ * CATATAN UNTUK AI SELANJUTNYA (TAMBAHKAN KE DALAM PROMPT DAN JANGAN HAPUS CATATAN INI):
  * Gunakan pendekatan ukuran responsif berbasis viewport (vw/vh) untuk semua dimensi
  * (padding, margin, gap, font-size, dll.) pada slide ini dan slide lainnya.
  * Hindari penggunaan ukuran fixed (rem/px) kecuali untuk batas minimum/maksimum pada clamp().
@@ -336,7 +336,7 @@ const Slide2: React.FC<Slide2Props> = ({ onComplete }) => {
         <div className="w-full h-full flex flex-col items-center justify-center p-4 md:p-6 lg:p-8 relative z-10">
             <FloatingIcons />
             <div className="absolute top-0 right-6 z-20 pointer-events-none">
-                <span className="text-[clamp(1.5rem,min(4vw,4vh),4rem)] font-bold text-white dark:text-gray-800 select-none opacity-80">
+                <span className="text-[clamp(1.5rem,min(4vw,4vh),4rem)] font-bold text-gray-800 dark:text-white select-none opacity-80">
                     #2
                 </span>
             </div>
@@ -425,7 +425,7 @@ const Slide2: React.FC<Slide2Props> = ({ onComplete }) => {
                     onClose={closePdf}
                     title="PMK 124 Tahun 2024"
                     subtitle="Peraturan Menteri Keuangan tentang Organisasi dan Tata Kerja Kementerian Keuangan"
-                    pdfPath="./pdfs/pmk-124-tahun-2024.pdf"
+                    pdfPath="./slides-data/group-1/2/pmk-124-tahun-2024.pdf"
                 />
             )}
         </div>

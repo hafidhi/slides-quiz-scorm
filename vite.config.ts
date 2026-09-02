@@ -10,5 +10,6 @@ export default defineConfig({
     define: {
         __BUILD_ID__: JSON.stringify(`build_${Date.now()}`),
     },
-    base: '/slides-quiz-scorm/', // Menggunakan relative path
+    base: './', // Menggunakan relative path
+    // base: '/slides-quiz-scorm/', // Menggunakan relative path
 })

@@ -124,18 +124,16 @@ const MatchingMultipleQuiz: React.FC<MatchingMultipleQuizProps> = ({
 
     const currentSelections = selectedAnswers[activeIndex] || []
 
-    // Status benar setelah submit
-    const isStatementCorrect = (): boolean | null => {
-        if (!submitted || !userAnswer) return null
-        const userSet = new Set(userAnswer[activeIndex] || [])
-        const correctSet = new Set(correctForStatement)
-        return (
-            userSet.size === correctSet.size &&
-            [...userSet].every((val) => correctSet.has(val))
+    // Menentukan opsi yang akan ditampilkan: semua jika belum submit, hanya yang dipilih jika sudah submit
+    const displayOptions = useMemo(() => {
+        if (!submitted || !userAnswer) {
+            return randomizedOptions
+        }
+        const selectedIndices = userAnswer[activeIndex] || []
+        return randomizedOptions.filter((opt) =>
+            selectedIndices.includes(opt.originalIndex),
         )
-    }
-
-    const correctStatus = isStatementCorrect()
+    }, [submitted, userAnswer, activeIndex, randomizedOptions])
 
     return (
         <motion.div
@@ -207,24 +205,6 @@ const MatchingMultipleQuiz: React.FC<MatchingMultipleQuizProps> = ({
                         })}
                     </div>
                 )}
-
-                {/* Feedback setelah submit */}
-                {submitted && correctStatus !== null && (
-                    <div className="mt-[clamp(0.75rem,min(1.5vw,1.5vh),1.25rem)] px-[clamp(0.75rem,min(1.5vw,1.5vh),1.25rem)] py-[clamp(0.4rem,min(0.8vw,0.8vh),0.8rem)] rounded-[clamp(0.5rem,min(1vw,1vh),1rem)] text-[clamp(0.8rem,min(1.5vw,1.5vh),1.25rem)] font-bold bg-white/80 dark:bg-gray-900/80 shadow">
-                        {correctStatus ? (
-                            <span className="text-green-600 dark:text-green-400">
-                                ✔ Benar
-                            </span>
-                        ) : (
-                            <span className="text-red-600 dark:text-red-400">
-                                ✘ Jawaban benar:{' '}
-                                {correctForStatement
-                                    .map((idx) => question.options[idx])
-                                    .join(', ')}
-                            </span>
-                        )}
-                    </div>
-                )}
             </div>
 
             {/* Label Opsi */}
@@ -236,7 +216,7 @@ const MatchingMultipleQuiz: React.FC<MatchingMultipleQuizProps> = ({
 
             {/* Daftar Opsi yang bisa dipilih (diacak) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(0.5rem,min(1vw,1vh),1rem)]">
-                {randomizedOptions.map((option) => {
+                {displayOptions.map((option) => {
                     const optIdx = option.originalIndex
                     const isSelected = currentSelections.includes(optIdx)
                     const usedBy = usedOptionsMap.get(optIdx)
@@ -253,13 +233,10 @@ const MatchingMultipleQuiz: React.FC<MatchingMultipleQuizProps> = ({
                         const correctSet = new Set(correctForStatement)
                         if (correctSet.has(optIdx)) {
                             btnStyle +=
-                                'bg-green-500 text-white border-green-500 cursor-not-allowed'
-                        } else if (isSelected && !correctSet.has(optIdx)) {
-                            btnStyle +=
-                                'bg-red-500 text-white border-red-500 cursor-not-allowed'
+                                'bg-green-600 text-white border-green-300 cursor-not-allowed'
                         } else {
                             btnStyle +=
-                                'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-600 cursor-not-allowed'
+                                'bg-red-600 text-white border-red-300 cursor-not-allowed'
                         }
                     } else {
                         if (isSelected) {
@@ -304,6 +281,7 @@ const MatchingMultipleQuiz: React.FC<MatchingMultipleQuizProps> = ({
 
                             {/* Penanda jika dipakai statement lain */}
                             {isUsedByOther &&
+                                !submitted &&
                                 owningStatementIndex !== undefined && (
                                     <>
                                         <span className="absolute bottom-[clamp(0.3rem,min(0.6vw,0.6vh),0.6rem)] left-[clamp(0.3rem,min(0.6vw,0.6vh),0.6rem)] transform rotate-10 text-gray-500 dark:text-gray-400 text-[clamp(0.8rem,min(1.2vw,1.2vh),1rem)] font-bold select-none">

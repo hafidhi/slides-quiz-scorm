@@ -94,18 +94,6 @@ const TrueFalseQuiz: React.FC<TrueFalseQuizProps> = ({
                     )
                 })}
             </div>
-
-            {submitted && (
-                <motion.div
-                    className="text-[clamp(0.8rem,min(1.5vw,1.5vh),1.25rem)] text-gray-800 dark:text-white font-medium"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                >
-                    {isCorrect()
-                        ? '✔ Benar'
-                        : `✘ Salah. Jawaban benar: ${question.options[(question.correctAnswers as number[])[0]]}`}
-                </motion.div>
-            )}
         </motion.div>
     )
 }

@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import { useInteraction } from '../hooks/useInteraction'
 import { useAudio } from '../context/AudioContext'
 import { useTheme } from '../context/ThemeContext'
-import FloatingControls from './FloatingControls'
+import FloatingControls from '../components/FloatingControls'
 import { captureAndSave } from '../utils/screenshotCapture'
 import { screenshotEnabled } from '../globalConfig'
 
@@ -39,7 +39,7 @@ const OpeningScreen: React.FC<OpeningScreenProps> = ({ onStart }) => {
 
     // Putar narasi pembuka
     useEffect(() => {
-        const audio = new Audio('./audios/opening-opener.mp3')
+        const audio = new Audio('./screens-data/opening/opener.mp3')
         audio.volume = volumeNarasi
         audio.muted = isOpenerMuted
         audio
@@ -63,8 +63,8 @@ const OpeningScreen: React.FC<OpeningScreenProps> = ({ onStart }) => {
     }, [isOpenerMuted])
 
     const backgroundImage = isDark
-        ? './images/background-opening-1.png'
-        : './images/background-opening-2.png'
+        ? './screens-data/opening/background-dark.png'
+        : './screens-data/opening/background-light.png'
 
     return (
         <>

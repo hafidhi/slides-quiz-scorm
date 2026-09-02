@@ -5,7 +5,7 @@ import { motion, type Variants } from 'framer-motion'
 import FloatingIcons from '../../components/FloatingIcons'
 
 /**
- * CATATAN UNTUK AI SELANJUTNYA (JANGAN HAPUS CATATAN INI):
+ * CATATAN UNTUK AI SELANJUTNYA (TAMBAHKAN KE DALAM PROMPT DAN JANGAN HAPUS CATATAN INI):
  * Gunakan pendekatan ukuran responsif berbasis viewport (vw/vh) untuk semua dimensi
  * (padding, margin, gap, font-size, dll.) pada slide ini dan slide lainnya.
  * Hindari penggunaan ukuran fixed (rem/px) kecuali untuk batas minimum/maksimum pada clamp().
@@ -43,7 +43,7 @@ const Slide1: React.FC = () => {
 
             {/* Nomor slide */}
             <div className="absolute top-0 right-6 z-20 pointer-events-none">
-                <i className="text-[clamp(1.5rem,min(5vw,5vh),4rem)] font-bold text-white dark:text-gray-800 select-none opacity-80">
+                <i className="text-[clamp(1.5rem,min(5vw,5vh),4rem)] font-bold text-gray-800 dark:text-white select-none opacity-80">
                     #1
                 </i>
             </div>
